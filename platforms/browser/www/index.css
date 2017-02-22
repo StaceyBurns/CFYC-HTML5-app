@@ -1,4 +1,3 @@
-
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
@@ -8,16 +7,6 @@ body {
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color:#E4E4E4;
-    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );
     background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
@@ -27,38 +16,25 @@ body {
     text-transform:uppercase;
     width:100%;
 }
+#home #ageList{
+	height: 100%;
+}
+#home #ageList li a {
+	height: 27vh;
+}
+#home #ageList li #enter0m {
+	/*background-color:#00E5E2;*/
+	background-image:url(../plugins/images/best-worst-things-newborn-2160X1200.jpg);
+}
+#home #ageList li #enter6m {
+/*	background-color:#05DD24;*/
+	background-image:url(../plugins/images/8-month-baby-feeding.jpg);
+}
+#home #ageList li #enter2y {
+	/*background-color:#FFAE00;*/
+	background-image:url(../plugins/images/your-3-year-old-development-behavior-and-parenting-tips-1.jpg);
+}
 
-/* Portrait layout (default) */
-.header {
-    background-color: #00ff00;
-    position:abrelative;             /* position in the center of the screen */
-    top:0%;
-    height:70px;                   /* text area height */
-    width:100%;                   /* text area width */
-    text-align:center;
-    margin: 0px 0px 10px 0px;  /* offset vertical: half of image height and text area height */
-                                   /* offset horizontal: half of text area width */
-}
-.cfyc {
-    background-color: #ff946A;
-    position:relative;             /* position in the center of the screen */
-    height:100px;                   /* text area height */
-    width:100%;                 /* text area width */
-    text-align:center;
-    margin:10px auto 0px auto;     /* image height is 200px (bottom 20px are overlapped with text) */
-     /* offset vertical: half of image height and text area height */
-                                   /* offset horizontal: half of text area width */
-}
-.notification {
-    background-color: #00ffff;
-    position:relative;             /* position in the center of the screen */
-    height:40px;                   /* text area height */
-    width:90%;                 /* text area width */
-    text-align:center;
-    margin:10px auto 0px auto;     /* image height is 200px (bottom 20px are overlapped with text) */
-     /* offset vertical: half of image height and text area height */
-                                   /* offset horizontal: half of text area width */
-}
 
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
