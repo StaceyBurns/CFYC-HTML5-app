@@ -1,12 +1,13 @@
 extends layout
 block content
+    - var videoWatched = ''
     #videoPage(data-role='page')
         div(data-role='header')
             a.ui-btn-left.ui-btn.ui-btn-icon-notext.ui-corner-all.ui-icon-back(href='index.html', data-rel='back')
             h1 Feeding your Child
         div(data-role='content')
             video(id='video1', width='320', height='240', controls='')
-                    source(src='testvid.mp4')
+                    source(src='../' + video.name + '.mp4')
             div(data-role='collapsible', data-inset='false', data-mini='true')
                 h1 More about Feeding your Child
                 p
@@ -17,10 +18,12 @@ block content
     
         include partials/footer.pug
     script.
+             console.log(videoName);
      var vid = document.getElementById("video1")
         vid.onended = function() {
          console.log('hi');
-         var video1Watched =
+         videoWatched = true;
+         console.log(videoWatched);
         }
          
 

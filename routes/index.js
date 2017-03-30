@@ -43,15 +43,64 @@ router.get('/0m', function(req, res, next){
 router.get('/6m', function(req, res, next){
     res.render('6m')
 });
-router.get('/2y', function(req, res, next){
-    res.render('2y')
-});
+//router.get('/2y', function(req, res, next){
+    //res.render('2y')
+//});
 router.get('/videoPage', function(req, res, next){
     res.render('videoPage')
 });
 router.get('/signup', function(req, res, next){
     res.render('signup')
 });
+
+var videoName = '';
+
+router.get('/2y', function(req, res, next) {
+    pool.getConnection(function(err, connection) {
+connection.query('SELECT * FROM videos', function(err, results, fields){
+    if (err) {
+      throw err;
+    }
+
+    var allVideos = new Array();
+
+    for (var i=0; i<results.length; i++) {
+      var video = {};
+      video.id = results[i].id;
+      video.name = results[i].videoName;
+      videoName =results[i].videoName;
+      console.log(video);
+
+     // console.log(JSON.stringify(video));
+ 
+
+      allVideos.push(video);
+    }
+   console.log(allVideos);
+   console.log(videoName);
+        connection.release();
+
+    res.render('2y', {videos: allVideos});
+     
+    
+  router.get('/videoPage/:videoName', function(req, res, next) {
+  console.log("Redirecting to video page based on video name clicked on" + req.params.videoName);
+  //currentVideo = req.params.videoName;
+  video.name = req.params.videoName;
+       res.render('videoPage', {video: video});
+  
+//  console.log(currentVideo);
+      });
+    });
+   });
+});
+
+//var currentVideo = '';
+
+
+console.log(videoName);
+
+
 
 
  var app_member = {};

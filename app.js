@@ -11,8 +11,6 @@ var users = require('./routes/users');
 var mysql      = require('mysql');
 
 
-
-
 var app = express();
 
 var session = require('express-session');
