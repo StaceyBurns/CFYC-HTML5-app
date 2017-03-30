@@ -1,0 +1,26 @@
+extends layout
+block content
+    #videoPage(data-role='page')
+        div(data-role='header')
+            a.ui-btn-left.ui-btn.ui-btn-icon-notext.ui-corner-all.ui-icon-back(href='index.html', data-rel='back')
+            h1 Feeding your Child
+        div(data-role='content')
+            video(id='video1', width='320', height='240', controls='')
+                    source(src='testvid.mp4')
+            div(data-role='collapsible', data-inset='false', data-mini='true')
+                h1 More about Feeding your Child
+                p
+                    b There are four main food groups 
+                p 
+                    b starchy foods
+                p These are the energy foods. Offer at each meal and also as snacks Bread, bagel, bread roll, crackers, pitta bread, wraps, rice cakes, scones, porridge, wheat biscuits, flake-type cereal; potatoes, pasta, plain noodles, couscous, rice. 
+    
+        include partials/footer.pug
+    script.
+     var vid = document.getElementById("video1")
+        vid.onended = function() {
+         console.log('hi');
+         var video1Watched =
+        }
+         
+

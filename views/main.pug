@@ -1,0 +1,16 @@
+extends layout
+
+
+block content
+    #home(data-role='page')
+        div(data-role='header')
+            h1 Caring for Your Child
+        div(data-role='content')
+            ul#ageList(data-role='listview', data-theme='c')
+                li
+                    a#enter0m(href='0m') 0 - 6m
+                li
+                    a#enter6m(href='6m') 6 - 24m
+                li
+                    a#enter2y(href='2y') 2 - 5y
+        include partials/footer.pug

@@ -1,0 +1,22 @@
+extends layout
+
+
+block content
+ #videoPage(data-role='page')
+        div(data-role='header')
+            a.ui-btn-left.ui-btn.ui-btn-icon-notext.ui-corner-all.ui-icon-back(href='index.html', data-rel='back')
+            h1 Log in / Sign Up
+        div(data-role='content')
+            h1 Please log in
+            form(method='POST', action='/login')
+                p EMAIL
+                input(type='text', name='username')
+                p PASSWORD
+                input(type='password', name='password')
+                br 
+                input(type='submit', value='login')
+                p Don't have an account?
+                a(href='signup')
+                    p Create an account
+                br
+                a(href='main') Continue without logging in

@@ -1,0 +1,23 @@
+extends layout
+
+
+block content
+ div(data-role='page')
+        div(data-role='header')
+            a.ui-btn-left.ui-btn.ui-btn-icon-notext.ui-corner-all.ui-icon-back(href='index.html', data-rel='back')
+            h1 Sign Up
+        .ui-content(role='main')
+            h3 Create an Account
+            form(method='POST', action='/signup')
+                p EMAIL
+                input(type='text', name='newUsername')
+                p PASSWORD
+                input(type='password', name='newPassword')
+                br 
+                input(type='submit', value='SUBMIT')
+                p Already have an account?
+                a(href='login')
+                    p Login
+                br
+                p Or
+                a(href='main') Continue without logging in

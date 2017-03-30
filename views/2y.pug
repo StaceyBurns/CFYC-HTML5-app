@@ -1,0 +1,21 @@
+extends layout
+block content
+    #2y(data-role='page')
+        div(data-role='header')
+            a.ui-btn-left.ui-btn.ui-btn-icon-notext.ui-corner-all.ui-icon-back(href='index.html', data-rel='back')
+            h1 2 - 5 years
+        div(data-role='content')
+            ul#ageList(data-role='listview', data-theme='c')
+                li
+                    a(href='videoPage') Feeding your Child
+                li
+                    a(href='videoPage') Video 2
+                li
+                    a(href='videoPage') Video 3
+                li
+                    a(href='videoPage') Video 4
+                li
+                    a(href='videoPage') Video 5
+                li
+                    a(href='videoPage') Video 6
+        include partials/footer.pug
