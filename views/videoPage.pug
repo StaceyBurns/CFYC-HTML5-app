@@ -15,12 +15,11 @@ block content
 
         include partials/footer.pug
     script.
-             console.log(videoName);
-     var vid = document.getElementById("video1")
-        vid.onended = function() {
-         console.log('hi');
-         videoWatched = true;
-         console.log(videoWatched);
-        }
-         
+        var vid = document.getElementById("video1")
+            vid.onended = function() {
+            console.log('hi');
+            videoWatched = true;
+            console.log(videoWatched);
+            }
+            
 

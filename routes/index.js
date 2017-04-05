@@ -19,6 +19,10 @@ pool.getConnection(function(err, connection) {
     });
 });
 
+router.get('/temp', function(req, res, next) {
+    res.render('tempVideo')
+});
+
 router.get('/', function(req, res, next) {
     res.render('login')
 });
@@ -110,6 +114,33 @@ router.post('/signup', function(req, res, next) {
     app_member.email = req.body.newUsername;
     app_member.pword = req.body.newPassword;
 
+pool.getConnection(function(err, connection) {
+        connection.query('SELECT email FROM member', function(err, results, fields) {
+            if (err) {
+                throw err;
+            }
+           // app_member.id = results.insertId;
+            console.log(JSON.stringify(app_member));
+            connection.release();
+        var registeredEmails = new Array();
+
+        for (var i = 0; i < results.length; i++) {
+            var email = {};
+            email.email = results[i].email;
+
+            console.log(JSON.stringify(email));
+
+            registeredEmails.push(email);
+        }
+
+        for (var i = 0; i <registeredEmails.length; i++) {
+            if(app_member.email == registeredEmails[i]) {
+
+                res.redirect('/signup');
+            console.log('email already in use');
+        }
+    } 
+
     pool.getConnection(function(err, connection) {
         connection.query('INSERT INTO member (email, pword) VALUES(?,?)', [app_member.email, app_member.pword], function(err, results, fields) {
             if (err) {
@@ -118,12 +149,19 @@ router.post('/signup', function(req, res, next) {
             app_member.id = results.insertId;
             console.log(JSON.stringify(app_member));
             connection.release();
-
+        
             res.redirect('/login');
+        
         });
+    
     });
+    
 
 });
+          
+   });
+        
+    });
 
 
 router.post('/login', function(req, res, next) {
