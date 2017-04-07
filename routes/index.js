@@ -40,9 +40,6 @@ router.get('/0m', function(req, res, next) {
 router.get('/6m', function(req, res, next) {
     res.render('6m')
 });
-//router.get('/2y', function(req, res, next){
-//res.render('2y')
-//});
 router.get('/videoPage', function(req, res, next) {
     res.render('videoPage')
 });
@@ -195,20 +192,17 @@ router.post('/login', function(req, res, next) {
     });
 });
 
-router.get('/videoPage', function(req, res, next) {
-    var vid = document.getElementById("video1");
-    vid.onended = function() {
-        alert("The video has ended");
-        console.log('video 1 has ended')
-    };
-    res.render('videoPage')
-    console.log('video 1 has ended')
-});
 
 
 router.post('/videoPage', function(req, res, next) {
-    res.send('videoPage')
 
+  var videoStatus = {
+    //status: ---> the status that i set to viewed when the video ends?
+    status: "Not viewed",
+    name: "Not set",
+  };
+
+  res.json('videoStatus');
 });
 
 module.exports = router;

@@ -14,12 +14,7 @@ block content
                     b #{videoText}
 
         include partials/footer.pug
-    script.
-        var vid = document.getElementById("video1")
-            vid.onended = function() {
-            console.log('hi');
-            videoWatched = true;
-            console.log(videoWatched);
-            }
+        script(type='text/javascript', src='https://code.jquery.com/jquery-1.11.2.min.js')
+        script(type='text/javascript', src='../javascripts/tracking.js')
             
 

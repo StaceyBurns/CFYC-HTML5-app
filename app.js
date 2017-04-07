@@ -15,6 +15,16 @@ var app = express();
 
 var session = require('express-session');
 
+
+var allowCrossDomain = function(req, res, next) {
+    // Set Access-Control-Allow-Origin so that requests from any domain are allowed
+    // -- may not be a good idea in real live apps
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+}
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -25,6 +35,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(allowCrossDomain);
 
 var expressSessionOptions ={
     secret: 'icare',
