@@ -28,8 +28,15 @@ body {
 .ui-content{
     background: transparent;
 }
-.bg-landing {
-    background: url(../images/bg_landing.jpg);
+.bg-login {
+    background: url(../images/bg_login.jpg);
+    background-repeat:repeat-y;
+    background-position:center center;
+    background-attachment:scroll;
+    background-size:cover; 
+}
+.bg-signup {
+    background: url(../images/bg_singup.jpg);
     background-repeat:repeat-y;
     background-position:center center;
     background-attachment:scroll;
@@ -61,7 +68,7 @@ body {
     padding: 0px;
 }
 #home #ageList li #enter6m {
-	background: url(../images/bg_6ma.png);
+	background: url(../images/bg_6m.png);
     background-size:contain;
     background-repeat: no-repeat;
     background-position:center left;
@@ -70,7 +77,7 @@ body {
     padding: 0px;
 }
 #home #ageList li #enter2y {
-	background: url(../images/bg_2ya.png);
+	background: url(../images/bg_2y.png);
     background-size:contain;
     background-repeat: no-repeat;
     background-position:center left;
