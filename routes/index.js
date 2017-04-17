@@ -10,7 +10,6 @@ var pool = mysql.createPool({
     password: '7192af0f',
     database: 'acsm_80c11940ed70e0a'
 });
-
 pool.getConnection(function(err, connection) {
     connection.query('SELECT * from member', function(error, results, fields) {
         console.log(results[1].email);
