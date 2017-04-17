@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-
+var member = {};
 
 var pool = mysql.createPool({
     connectionLimit: 100, 
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'cfyc_app'
+    host: 'us-cdbr-azure-southcentral-f.cloudapp.net',
+    user: 'b7a51036c7e393',
+    password: '7192af0f',
+    database: 'acsm_80c11940ed70e0a'
 });
 
 pool.getConnection(function(err, connection) {
@@ -46,13 +46,19 @@ router.get('/videoPage', function(req, res, next) {
 router.get('/signup', function(req, res, next) {
     res.render('signup')
 });
-
+router.get('/myAccount', function(req, res, next) {
+    res.render('account')
+});
+router.get('/logout', function(req, res, next) {
+  req.session.destroy()
+  res.redirect('/login');
+});
 var videoName = '';
 var videoText = '';
 
 router.get('/2y', function(req, res, next) {
     pool.getConnection(function(err, connection) {
-        connection.query('SELECT * FROM videos', function(err, results, fields) {
+        connection.query('SELECT * FROM videos JOIN trackVideo ON videos.videoUserId = trackVideo.trackVideoUserId WHERE videos.videoUserId=?',['2'], function(err, results, fields) {
             if (err) {
                 throw err;
             }
@@ -61,20 +67,34 @@ router.get('/2y', function(req, res, next) {
 
             for (var i = 0; i < results.length; i++) {
                 var video = {};
-                video.id = results[i].id;
                 video.name = results[i].videoName;
                 video.text = results[i].videoText;
                 videoName = results[i].videoName;
                 videoText = results[i].videoText;
+                videoUserId = results[i].videoUserId;
+                videoViewed = '';
+                videoStatus = (function status() {
+                if (results[i].viewed == 'viewed') {
+                video.viewed = ['ui-btn', 'ui-icon-check', 'ui-btn-icon-left', 'viewed-icon']
+                     }
+                  else {
+                video.viewed = ['ui-btn', 'ui-icon-check', 'ui-btn-icon-left']
+                  }
+
+                    })();
+                                   console.log('----------------------------------------------------'+ videoViewed);
                 console.log(video);
                 allVideos.push(video);
             }
             console.log(allVideos);
             connection.release();
 
+            
+
             res.render('2y', {
                 videos: allVideos
             });
+
 
 
             router.get('/videoPage/:videoName', function(req, res, next) {
@@ -94,7 +114,7 @@ router.get('/2y', function(req, res, next) {
                         console.log(videoText);
 
                         res.render('videoPage', {
-                            video: video
+                            video: video, videoText: videoText
                         });
                     });
                 });
@@ -104,62 +124,32 @@ router.get('/2y', function(req, res, next) {
 });
 console.log(videoName);
 
-var app_member = {};
-router.post('/signup', function(req, res, next) {
-
-    app_member.id = req.body.id;
-    app_member.email = req.body.newUsername;
-    app_member.pword = req.body.newPassword;
-
-pool.getConnection(function(err, connection) {
-        connection.query('SELECT email FROM member', function(err, results, fields) {
-            if (err) {
-                throw err;
-            }
-           // app_member.id = results.insertId;
-            console.log(JSON.stringify(app_member));
-            connection.release();
-        var registeredEmails = new Array();
-
-        for (var i = 0; i < results.length; i++) {
-            var email = {};
-            email.email = results[i].email;
-
-            console.log(JSON.stringify(email));
-
-            registeredEmails.push(email);
-        }
-
-        for (var i = 0; i <registeredEmails.length; i++) {
-            if(app_member.email == registeredEmails[i]) {
-
-                res.redirect('/signup');
-            console.log('email already in use');
-        }
-    } 
+ var app_member = {};
+router.post('/signup', function(req, res, next){
+    
+  app_member.id = req.body.id;
+  app_member.email = req.body.newUsername;
+  app_member.pword = req.body.newPassword;
 
     pool.getConnection(function(err, connection) {
-        connection.query('INSERT INTO member (email, pword) VALUES(?,?)', [app_member.email, app_member.pword], function(err, results, fields) {
-            if (err) {
-                throw err;
-            }
-            app_member.id = results.insertId;
-            console.log(JSON.stringify(app_member));
-            connection.release();
-        
-            res.redirect('/login');
-        
-        });
-    
-    });
-    
+connection.query('INSERT INTO member (email, pword) VALUES(?,?)',[app_member.email, app_member.pword], function(err, results,fields) {
+    if (err) {
+      throw err;
+    }
 
-});
-          
+
+    app_member.id = results.insertId;
+    console.log(JSON.stringify(app_member));
+
+    connection.release();
+
+    res.redirect('/');
+  });
    });
-        
-    });
+    
+});
 
+          
 
 router.post('/login', function(req, res, next) {
 

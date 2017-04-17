@@ -1,17 +1,18 @@
 extends layout
 block content
     - var videoName = videoName;
-    #2y(data-role='page')
+
+    #2y.colour-2y-light(data-role='page')
         div(data-role='header')
             a.ui-btn-left.ui-btn.ui-btn-icon-notext.ui-corner-all.ui-icon-back(href='index.html', data-rel='back')
             h1 2 - 5 years
         div(data-role='content')
-            ul#ageList(data-role='listview', data-theme='c')
+            ul#ageList(data-role='listview')
 
                  for video, i in videos
 
                       li
-                          a(href='videoPage/' +video.name) #{video.name}
+                          a.colour-2y-dark(class = video.viewed, href='videoPage/' +video.name) #{video.name}
 
         include partials/footer.pug
 

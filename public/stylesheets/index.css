@@ -5,41 +5,87 @@
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
-    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    -webkit-user-select: none; 
+    user-select: none;                /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color:#E4E4E4;
     background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:12px;
+    font-size:16px;
     height:100%;
     margin:0px;
     padding:0px;
     text-transform:uppercase;
     width:100%;
 }
+.ui-header {
+    height: 8vh;
+    margin: 0px;
+    padding: 0px;
+}
+.ui-page {
+    background: transparent;
+}
+.ui-content{
+    background: transparent;
+}
+.bg-landing {
+    background: url(../images/bg_landing.jpg);
+    background-repeat:repeat-y;
+    background-position:center center;
+    background-attachment:scroll;
+    background-size:cover; 
+}
+.center{
+    margin: 0 auto;
+    text-align:center;
+}
+.colour-2y-light {
+    background-color:#bddf55;
+}
+.colour-2y-dark {
+    background-color:#60c7dd
+}
 #home #ageList{
 	height: 100%;
 }
 #home #ageList li a {
-	height: 25vh;
+	height: 28vh;
 }
 #home #ageList li #enter0m {
-	background-color:#60c7dd;
-	/*background-image:url(../plugins/images/best-worst-things-newborn-2160X1200.jpg);*/
+	background: url(../images/bg_0m.png);
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position:center left;
+    background-color:#60c7dd;
+    margin: 0px;
+    padding: 0px;
 }
 #home #ageList li #enter6m {
-	background-color:#fda13b;
-	/*background-image:url(../plugins/images/8-month-baby-feeding.jpg);*/
+	background: url(../images/bg_6ma.png);
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position:center left;
+    background-color:#fda13b;
+    margin: 0px;
+    padding: 0px;
 }
 #home #ageList li #enter2y {
-	background-color:#bddf55;
-	/*background-image:url(../plugins/images/your-3-year-old-development-behavior-and-parenting-tips-1.jpg);*/
+	background: url(../images/bg_2ya.png);
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position:center left;
+    background-color:#bddf55;
+    margin: 0px;
+    padding: 0px;
 }
 #footer {
-	background-color:#bddf55;
+	background-color:#000000;
     position: absolute;
     width:100%;
- 
+    height: 8vh;
     bottom: 0;
+    margin: 0px;
+    padding: 0px;
 	/*background-image:url(../plugins/images/your-3-year-old-development-behavior-and-parenting-tips-1.jpg);*/
 }
 
@@ -57,9 +103,9 @@ body {
 h1 {
     font-size:24px;
     font-weight:normal;
-    margin:0px;
+    /*margin:0px;
     overflow:visible;
-    padding:0px;
+    padding:0px;*/
     text-align:center;
 }
 h2.cfyc-text-danger,
@@ -67,23 +113,9 @@ h3.cfyc-text-danger  {
     color:red;
 }
 
-.event {
-    border-radius:4px;
-    -webkit-border-radius:4px;
-    color:#FFFFFF;
-    font-size:12px;
-    margin:0px 30px;
-    padding:2px 0px;
-}
 
-.event.listening {
-    background-color:#333333;
-    display:block;
-}
-
-.event.received {
-    background-color:#4B946A;
-    display:none;
+.ui-btn.ui-icon-check.ui-btn-icon-left.viewed-icon:after {
+     background-color: #00ff00;
 }
 
 @keyframes fade {
@@ -98,7 +130,3 @@ h3.cfyc-text-danger  {
     to { opacity: 1.0; }
 }
  
-.blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
-}

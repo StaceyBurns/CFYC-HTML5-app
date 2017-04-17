@@ -2,7 +2,7 @@ extends layout
 
 
 block content
- div(data-role='page')
+ div.bg-landing(data-role='page')
         div(data-role='header')
             a.ui-btn-left.ui-btn.ui-btn-icon-notext.ui-corner-all.ui-icon-back(href='index.html', data-rel='back')
             h1 Sign Up
@@ -13,11 +13,12 @@ block content
                 input(type='text', name='newUsername')
                 p PASSWORD
                 input(type='password', name='newPassword')
-                br 
+                | 
                 input(type='submit', value='SUBMIT')
-                p Already have an account?
+                p.center Already have an account?
                 a(href='login')
-                    p Login
-                br
-                p Or
-                a(href='main') Continue without logging in
+                    p.center Login
+                |
+                p.center Or
+                a(href='main') 
+                    p.center Continue without logging in
