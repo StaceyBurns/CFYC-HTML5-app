@@ -10,13 +10,13 @@ var pool = mysql.createPool({
     password: '7192af0f',
     database: 'acsm_80c11940ed70e0a'
 });
-pool.getConnection(function(err, connection) {
+/*pool.getConnection(function(err, connection) {
     connection.query('SELECT * from member', function(error, results, fields) {
         console.log(results[1].email);
         connection.release();
         if (error) throw error;
     });
-});
+});*/
 
 router.get('/temp', function(req, res, next) {
     res.render('tempVideo')

@@ -2,15 +2,18 @@ extends layout
 
 
 block content
-    #home(data-role='page')
+    #home(data-role='page' data-theme="a")
         div(data-role='header')
             h1 Caring for Your Child
         div(data-role='content')
             ul#ageList(data-role='listview', data-theme='c')
                 li
-                    a#enter0m(href='0m') 0 - 6m
+                    a#enter0m(href='0m') 
+                        p 0 - 6 Months
                 li
-                    a#enter6m(href='6m') 6 - 24m
+                    a#enter6m(href='6m') 
+                        p 6 - 24 Months
                 li
-                    a#enter2y(href='2y') 2 - 5y
+                    a#enter2y(href='2y') 
+                        p 2 - 5 Years
         include partials/footer.pug

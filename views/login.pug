@@ -2,22 +2,22 @@ extends layout
 
 
 block content
- #login.bg-login(data-role='page')
+ #login.bg-login(data-role='page' data-theme="a")
         div(data-role='header')
-            a.ui-btn-left.ui-btn.ui-btn-icon-notext.ui-corner-all.ui-icon-back(href='index.html', data-rel='back')
-            h1 Log in / Sign Up
+            h1 Log in
         div(data-role='content')
             h1 Please log in
-            form(method='POST', action='/login')
+            form.form(method='POST', action='/login')
                 p EMAIL
                 input(type='text', name='username')
                 p PASSWORD
                 input(type='password', name='password')
                 |
                 input(type='submit', value='login')
-                p.center Don't have an account?
-                a(href='signup')
-                    p.center Create an account
+            p.center Don't have an account?
+            a(href='signup')
+                p.center Create an account
                 |
-                a(href='main') 
-                    p.center Continue without logging in
+            p.center Or
+            a(href='main') 
+                p.center Continue without logging in

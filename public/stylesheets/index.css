@@ -2,6 +2,7 @@
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
+
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
@@ -9,18 +10,30 @@ body {
     user-select: none;                /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color:#E4E4E4;
     background-attachment:fixed;
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-family: 'Maven Pro', sans-serif;
     font-size:16px;
     height:100%;
     margin:0px;
     padding:0px;
     text-transform:uppercase;
     width:100%;
+    
+}
+.ui-overlay-a { 
+   text-shadow:0 0 0 !important; 
+}
+.ui-page-theme-a{ 
+   text-shadow:0 0 0 !important; 
 }
 .ui-header {
     height: 8vh;
     margin: 0px;
     padding: 0px;
+    font-family: 'Baloo Bhaina', cursive;
+}
+.ui-title {
+    margin: 0.6em 10% 0.8em !important;
+    font-size: 20px !important;
 }
 .ui-page {
     background: transparent;
@@ -29,21 +42,21 @@ body {
     background: transparent;
 }
 .bg-login {
-    background: url(../images/bg_login.jpg);
+    background: url(../images/bg_loginw.jpg);
     background-repeat:repeat-y;
     background-position:center center;
     background-attachment:scroll;
     background-size:cover; 
 }
 .bg-signup {
-    background: url(../images/bg_signup.jpg);
+    background: url(../images/bg_signupw.jpg);
     background-repeat:repeat-y;
     background-position:center center;
     background-attachment:scroll;
     background-size:cover; 
 }
 .center{
-    margin: 0 auto;
+    margin: 15px auto 0 auto;
     text-align:center;
 }
 .colour-2y-light {
@@ -66,6 +79,15 @@ body {
     background-color:#60c7dd;
     margin: 0px;
     padding: 0px;
+
+}
+#home #ageList li p {
+    display: block;
+    margin-left: 65vw;
+    margin-top: 18vh;
+    font-size: 18px;
+    font-weight: bold;
+    
 }
 #home #ageList li #enter6m {
 	background: url(../images/bg_6m.png);
@@ -75,6 +97,7 @@ body {
     background-color:#fda13b;
     margin: 0px;
     padding: 0px;
+    
 }
 #home #ageList li #enter2y {
 	background: url(../images/bg_2y.png);
@@ -95,6 +118,11 @@ body {
     padding: 0px;
 	/*background-image:url(../plugins/images/your-3-year-old-development-behavior-and-parenting-tips-1.jpg);*/
 }
+.form{
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
 
 
 /* Landscape layout (with min-width) */
@@ -109,7 +137,7 @@ body {
 
 h1 {
     font-size:24px;
-    font-weight:normal;
+    font-weight:bold;
     /*margin:0px;
     overflow:visible;
     padding:0px;*/
