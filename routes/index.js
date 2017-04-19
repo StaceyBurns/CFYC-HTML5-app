@@ -31,6 +31,11 @@ router.get('/login', function(req, res, next) {
 });
 
 router.get('/main', function(req, res, next) {
+    console.log('the user email is ' +req.session.email);
+    if (typeof req.session.userId == 'undefined'){
+        req.session.userId = 2;
+    }
+    console.log('user is logged in as user number ' + req.session.userId);
     res.render('main')
 });
 router.get('/0m', function(req, res, next) {
@@ -46,7 +51,16 @@ router.get('/signup', function(req, res, next) {
     res.render('signup')
 });
 router.get('/myAccount', function(req, res, next) {
-    res.render('account')
+        if (req.session.userId == '2'){
+        req.session.userId = 2;
+        req.session.emailMsg = 'You are not logged in';
+    }
+ else { 
+        req.session.emailMsg = req.session.email;
+}
+
+
+    res.render('account', {emailMsg: req.session.emailMsg})
 });
 router.get('/logout', function(req, res, next) {
   req.session.destroy()
@@ -57,7 +71,7 @@ var videoText = '';
 
 router.get('/2y', function(req, res, next) {
     pool.getConnection(function(err, connection) {
-        connection.query('SELECT * FROM videos JOIN trackVideo ON videos.videoUserId = trackVideo.trackVideoUserId WHERE videos.videoUserId=?',['2'], function(err, results, fields) {
+        connection.query('SELECT * FROM videos JOIN trackVideo ON videos.videoUserId = trackVideo.trackVideoUserId WHERE videos.videoUserId=?',[req.session.userId], function(err, results, fields) {
             if (err) {
                 throw err;
             }
@@ -138,6 +152,7 @@ connection.query('INSERT INTO member (email, pword) VALUES(?,?)',[app_member.ema
 
 
     app_member.id = results.insertId;
+    req.session.email = app_member.email;
     console.log(JSON.stringify(app_member));
 
     connection.release();
@@ -155,28 +170,40 @@ router.post('/login', function(req, res, next) {
     app_member.id = req.body.id;
     app_member.email = req.body.username;
     pool.getConnection(function(err, connection) {
-        connection.query('SELECT email, pword FROM member WHERE email=?', [app_member.email], function(err, results, fields) {
+        connection.query('SELECT email, pword, id FROM member WHERE email=?', [app_member.email], function(err, results, fields) {
             if (err) {
                 throw err;
             } else if (results.length) {
                 console.log('The result is  ', results[0].email);
+                app_member.userId = results[0].id;
+                req.session.email = results[0].email;
             } else {
                 console.log("Query didn't return any results.");
+                req.session.userMessage = "This email address is not registered";
             }
-            app_member.id = results.insertId;
+            //app_member.id = results.insertId;
 
             var givenUsername = req.body.username;
             var givenPassword = req.body.password;
             console.log(JSON.stringify(app_member));
             connection.release();
             if (results.length == 0) {
-                res.redirect('/login')
+                res.render('/login', {
+                    msg: userMessage
+})
             } else if (givenPassword != results[0].pword) {
-                console.log("wrong password")
-                res.redirect('/login')
+             req.session.userMessage = "Password/email incorrect";
+                res.render('login', {
+                    msg: userMessage
+                });
             } else {
+    
+                req.session.email = app_member.email;
+                req.session.userId = app_member.userId;
                 res.redirect('/main')
+                
             }
+            console.log('The session ID is ' + req.session.userId);
         });
     });
 });

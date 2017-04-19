@@ -7,15 +7,11 @@ block content
             h1 Caring for Your Child
         div(data-role='content')
             h1 My account
-            h2 Hi fName
             h3 Email
-            p jnksjbvkb@bhdfsbhj.com
+            p #{emailMsg}
             p Check back here soon for added features!
-            h2 The information in these videos have been taken from HSE's 'Caring for your Child' - all information and content is property of the HSE
-            
-
-
-                    a.ui-btn.ui-corner-all(href='/logout') 
-                        p Logout
+            p.disclaimer The information contained in these videos have been taken from HSE's 'Caring for your Child' - all information is copyright of the HSE
+            a.ui-btn.ui-corner-all(href='/logout') 
+                p Logout
 
         include partials/footer.pug
