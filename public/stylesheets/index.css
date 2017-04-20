@@ -15,11 +15,10 @@ body {
     height:100%;
     margin:0px;
     padding:0px;
-    text-transform:uppercase;
     width:100%;
     
 }
-.ui-overlay-a { 
+.ui-btn, .ui-overlay-a { 
    text-shadow:0 0 0 !important; 
 }
 .ui-page-theme-a{ 
@@ -62,8 +61,11 @@ body {
 .colour-2y-light {
     background-color:#bddf55;
 }
-.colour-2y-dark {
-    background-color:#60c7dd
+#sections-2y {
+	height: 84vh;
+}
+#sections-2y li a {
+	height: 7vh;
 }
 #home #ageList{
 	height: 100%;
@@ -109,7 +111,7 @@ body {
     padding: 0px;
 }
 #footer {
-	background-color:#000000;
+	background-color:#f6f6f6;
     position: absolute;
     width:100%;
     height: 8vh;
@@ -121,6 +123,22 @@ body {
 .form{
     margin-top: 10vh;
     margin-bottom: 10vh;
+}
+.video-container{
+    margin-left: auto;
+    margin-right: auto;
+    width: 320px;
+}
+.disclaimer{
+    color: #9f2e2e;
+    font-size: 12px;
+}
+.logout{
+    margin-top:10vh;
+}
+#login .ui-link, #signup .ui-link{
+    color: #ffffff !important;
+    text-shadow: none !important;
 }
 
 
@@ -150,7 +168,7 @@ h3.cfyc-text-danger  {
 
 
 .ui-btn.ui-icon-check.ui-btn-icon-left.viewed-icon:after {
-     background-color: #00ff00;
+     background-color: #4bec88;
 }
 
 @keyframes fade {

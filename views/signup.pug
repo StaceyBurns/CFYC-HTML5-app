@@ -2,18 +2,18 @@ extends layout
 
 
 block content
- div.bg-signup(data-role='page' data-theme="a")
+ #signup.bg-signup(data-role='page' data-theme="a")
         div(data-role='header')
             h1 Sign Up
         div(data-role='content')
             h1 Create an Account
             form.form(method='POST', action='/signup')
-                p EMAIL
+                p Email
                 input(type='text', name='newUsername')
-                p PASSWORD
+                p Password
                 input(type='password', name='newPassword')
                 | 
-                input(type='submit', value='SUBMIT')
+                input(type='submit', value='Submit')
             p.center Already have an account?
             a(href='login')
                 p.center Login

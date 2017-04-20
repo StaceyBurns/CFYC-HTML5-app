@@ -4,12 +4,13 @@ block content
     #videoPage(data-role='page')
         div(data-role='header')
             a.ui-btn-left.ui-btn.ui-btn-icon-notext.ui-corner-all.ui-icon-back(href='index.html', data-rel='back')
-            h1 Feeding your Child
+            h1 #{videoName}
         div(data-role='content')
-            video(id='video1', width='320', height='240', controls='')
-                    source(src='http://staceyburns.net/' + video.name + '.mp4')
+            div.video-container
+                video(id='video1', width='320', height='240', controls='')
+                        source(src='http://staceyburns.net/' + video.url + '.mp4')
             div(data-role='collapsible', data-inset='false', data-mini='true')
-                h1 More about Feeding your Child
+                h1 More about #{videoName}
                 p #{videoText}
 
         include partials/footer.pug

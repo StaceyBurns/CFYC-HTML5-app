@@ -4,16 +4,16 @@ extends layout
 block content
  #login.bg-login(data-role='page' data-theme="a")
         div(data-role='header')
-            h1 Log in
+            h1 Log In
         div(data-role='content')
-            h1 Please log in
+            h1 Please Log In
             form.form(method='POST', action='/login')
-                p EMAIL
+                p Email
                 input(type='text', name='username')
-                p PASSWORD
+                p Password
                 input(type='password', name='password')
                 |
-                input(type='submit', value='login')
+                input(type='submit', value='Login')
             p.center Don't have an account?
             a(href='signup')
                 p.center Create an account

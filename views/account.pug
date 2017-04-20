@@ -9,9 +9,10 @@ block content
             h1 My account
             h3 Email
             p #{emailMsg}
-            p Check back here soon for added features!
-            p.disclaimer The information contained in these videos have been taken from HSE's 'Caring for your Child' - all information is copyright of the HSE
-            a.ui-btn.ui-corner-all(href='/logout') 
+            p.center 
+                b Check back here soon for added features!
+            p.center.disclaimer The information contained in these videos is copyright of the HSE
+            a.logout.ui-btn.ui-corner-all(href='/logout') 
                 p Logout
 
         include partials/footer.pug

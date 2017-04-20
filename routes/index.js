@@ -68,10 +68,13 @@ router.get('/logout', function(req, res, next) {
 });
 var videoName = '';
 var videoText = '';
+var videoURL = '';
 
 router.get('/2y', function(req, res, next) {
     pool.getConnection(function(err, connection) {
-        connection.query('SELECT * FROM videos JOIN trackVideo ON videos.videoUserId = trackVideo.trackVideoUserId WHERE videos.videoUserId=?',[req.session.userId], function(err, results, fields) {
+        connection.query('SELECT * FROM videos JOIN trackVideo ON videos.videoId = trackVideo.videoId WHERE trackVideo.trackVideoUserId=?',[2], function(err, results, fields) {
+
+
             if (err) {
                 throw err;
             }
@@ -82,6 +85,9 @@ router.get('/2y', function(req, res, next) {
                 var video = {};
                 video.name = results[i].videoName;
                 video.text = results[i].videoText;
+                video.url = results[i].videoURL;
+                videoURL = results[i].videoURL;
+                video.BG = results[i].videoBG;
                 videoName = results[i].videoName;
                 videoText = results[i].videoText;
                 videoUserId = results[i].videoUserId;
@@ -91,17 +97,19 @@ router.get('/2y', function(req, res, next) {
                 video.viewed = ['ui-btn', 'ui-icon-check', 'ui-btn-icon-left', 'viewed-icon']
                      }
                   else {
-                video.viewed = ['ui-btn', 'ui-icon-check', 'ui-btn-icon-left']
+                video.viewed = ['ui-btn', 'ui-icon-carat-r', 'ui-btn-icon-left']
                   }
 
                     })();
                                    console.log('----------------------------------------------------'+ videoViewed);
                 console.log(video);
+                console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'+video.url);
+                console.log('OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO'+videoURL);
                 allVideos.push(video);
             }
-            console.log(allVideos);
+            //console.log(allVideos);
             connection.release();
-
+            
             
 
             res.render('2y', {
@@ -110,16 +118,19 @@ router.get('/2y', function(req, res, next) {
 
 
 
-            router.get('/videoPage/:videoName', function(req, res, next) {
-                console.log("Redirecting to video page based on video name clicked on" + req.params.videoName);
-                video.name = req.params.videoName;
+            router.get('/videoPage/:videoURL', function(req, res, next) {
+                console.log("Redirecting to video page based on video name clicked on" + req.params.videoURL);
+                video.url = req.params.videoURL;
 
                 pool.getConnection(function(err, connection) {
-                    connection.query('SELECT videoText FROM videos WHERE videoName=?', [video.name], function(err, results, fields) {
+                    connection.query('SELECT videoText, videoName FROM videos WHERE videoURL=?', [video.url], function(err, results, fields) {
                         if (err) {
                             throw err;
                         }
+                        if (results.length){
                         videoText = results[0].videoText;
+                        videoName = results[0].videoName;
+                        }
 
                         connection.release();
 
@@ -127,7 +138,7 @@ router.get('/2y', function(req, res, next) {
                         console.log(videoText);
 
                         res.render('videoPage', {
-                            video: video, videoText: videoText
+                            video: video, videoText: videoText, videoName: videoName
                         });
                     });
                 });
@@ -189,17 +200,18 @@ router.post('/login', function(req, res, next) {
             connection.release();
             if (results.length == 0) {
                 res.render('/login', {
-                    msg: userMessage
+                    msg: req.session.userMessage
 })
             } else if (givenPassword != results[0].pword) {
              req.session.userMessage = "Password/email incorrect";
                 res.render('login', {
-                    msg: userMessage
+                    msg: req.session.userMessage
                 });
             } else {
     
                 req.session.email = app_member.email;
                 req.session.userId = app_member.userId;
+                
                 res.redirect('/main')
                 
             }
