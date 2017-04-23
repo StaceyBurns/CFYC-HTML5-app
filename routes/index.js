@@ -50,6 +50,12 @@ router.get('/videoPage', function(req, res, next) {
 router.get('/signup', function(req, res, next) {
     res.render('signup')
 });
+router.get('/infographic', function(req, res, next) {
+    res.render('infographic')
+});
+router.get('/usefulInfo', function(req, res, next) {
+    res.render('usefulInfo')
+});
 router.get('/myAccount', function(req, res, next) {
         if (req.session.userId == '2'){
         req.session.userId = 2;

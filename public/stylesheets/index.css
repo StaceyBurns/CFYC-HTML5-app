@@ -61,7 +61,7 @@ body {
 .colour-2y-light {
     background-color:#bddf55;
 }
-#sections-2y {
+.infographic, #sections-2y {
 	height: 84vh;
 }
 #sections-2y li a {
